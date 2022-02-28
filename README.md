@@ -5,7 +5,7 @@ December, 28 2021
 Explore US Bikeshare Data
 
 ### Description
-Describe what your project is about and what it does
+Purpose of this project is to develop Python code to analyse Bikare data from 3 deifferents cities.
 
 ### Files used
 python code :
