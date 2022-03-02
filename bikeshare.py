@@ -148,7 +148,7 @@ def time_stats(df):
     print('Most Frequent Start Hour: {} (count= {}, %= {}) '.format( popular_hour, popular_hour_count, popular_hour_Percent))
     
     
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % duration_up_now(start_time))
     print('-'*40)
 
 
@@ -182,8 +182,15 @@ def station_stats(df):
     print('Most Frequent Trip: {} (count= {}, %= {}) '.format( popular_trip, popular_trip_count, popular_trip_Percent))
     
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (duration_up_now(start_time)))
     print('-'*40)
+
+def duration_up_now(start_time):
+    '''
+        extract method used to create the  function 
+        (refactoring)
+    '''
+    return time.time() - start_time
 
 
 def trip_duration_stats(df):
@@ -212,7 +219,7 @@ def trip_duration_stats(df):
     Mean_Travel_Time = df['Total_Travel_Time'].mean()
     print('Mean travel time is : {}'.format(Mean_Travel_Time))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % duration_up_now(start_time))
     print('-'*40)
 
 
@@ -263,7 +270,7 @@ def user_stats(df):
         print ('\n[Birth Year] doesn\'t exists for this scope of data. Display is not possible')
 
             
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % duration_up_now(start_time))
     print('-'*40)
 
 def see_raw_data(df):
