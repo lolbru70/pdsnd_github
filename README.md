@@ -5,7 +5,7 @@ December, 28 2021
 Explore US Bikeshare Data
 
 ### Description
-Purpose of this project is to develop Python code to analyse Bikshare data from 3 differents cities.
+Purpose of this project is to develop Python code to explore US Bikeshare data from 3 differents cities.
 You can :
 > choose the city,
 > see time statistics,
@@ -25,5 +25,5 @@ documentation :
     README.md
 
 ### Credits
-Udacity 
+_Udacity_ 
 
