@@ -17,10 +17,12 @@ You can :
 ### Files used
 python code :
    * bikeshare.py
+
 data :
    * chicago.csv
    * new_york_city.csv
    * washington.csv 
+
 documentation :
    * README.md
 
