@@ -250,6 +250,11 @@ def user_stats(df):
         Gender_Percent = df['Gender'].value_counts(normalize=True).mul(100).round(1)
         GenderDisplay = pd.DataFrame({'Units' : Gender_Count, '%' : Gender_Percent})
         print('\nGender are dispayed like this:\n{}'.format(GenderDisplay))
+        #print [df['Gender'][df['Gender'].education == '9th', 'education'].count()]
+        
+        # Plot a pie chart of gender split :
+        plt_pie(Gender_Count)
+        
     except KeyError:
         print ('\n[Gender] doesn\'t exists for this scope of data. Display is not possible')
      
@@ -292,6 +297,25 @@ def see_raw_data(df):
             print('End of analysis')
             break
 
+def plt_pie(x):
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    plt.style.use('_mpl-gallery-nogrid')
+
+
+    colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7, len(x)))
+
+    # plot
+    fig, ax = plt.subplots()
+    ax.pie(x, colors=colors, radius=3, center=(4, 4),
+        wedgeprops={"linewidth": 1, "edgecolor": "white"}, 
+        frame=True)
+
+    ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
+        ylim=(0, 8), yticks=np.arange(1, 8))
+
+    plt.show()
 
 def main():
     while True:
