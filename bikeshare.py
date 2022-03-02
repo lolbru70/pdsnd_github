@@ -148,7 +148,7 @@ def time_stats(df):
     print('Most Frequent Start Hour: {} (count= {}, %= {}) '.format( popular_hour, popular_hour_count, popular_hour_Percent))
     
     
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % duration_up_now(start_time))
     print('-'*40)
 
 
@@ -182,8 +182,15 @@ def station_stats(df):
     print('Most Frequent Trip: {} (count= {}, %= {}) '.format( popular_trip, popular_trip_count, popular_trip_Percent))
     
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (duration_up_now(start_time)))
     print('-'*40)
+
+def duration_up_now(start_time):
+    '''
+        extract method used to create the  function 
+        (refactoring)
+    '''
+    return time.time() - start_time
 
 
 def trip_duration_stats(df):
@@ -212,7 +219,7 @@ def trip_duration_stats(df):
     Mean_Travel_Time = df['Total_Travel_Time'].mean()
     print('Mean travel time is : {}'.format(Mean_Travel_Time))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % duration_up_now(start_time))
     print('-'*40)
 
 
@@ -243,6 +250,11 @@ def user_stats(df):
         Gender_Percent = df['Gender'].value_counts(normalize=True).mul(100).round(1)
         GenderDisplay = pd.DataFrame({'Units' : Gender_Count, '%' : Gender_Percent})
         print('\nGender are dispayed like this:\n{}'.format(GenderDisplay))
+        #print [df['Gender'][df['Gender'].education == '9th', 'education'].count()]
+        
+        # Plot a pie chart of gender split :
+        plt_pie(Gender_Count)
+        
     except KeyError:
         print ('\n[Gender] doesn\'t exists for this scope of data. Display is not possible')
      
@@ -263,7 +275,7 @@ def user_stats(df):
         print ('\n[Birth Year] doesn\'t exists for this scope of data. Display is not possible')
 
             
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % duration_up_now(start_time))
     print('-'*40)
 
 def see_raw_data(df):
@@ -285,6 +297,25 @@ def see_raw_data(df):
             print('End of analysis')
             break
 
+def plt_pie(x):
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    plt.style.use('_mpl-gallery-nogrid')
+
+
+    colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7, len(x)))
+
+    # plot
+    fig, ax = plt.subplots()
+    ax.pie(x, colors=colors, radius=3, center=(4, 4),
+        wedgeprops={"linewidth": 1, "edgecolor": "white"}, 
+        frame=True)
+
+    ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
+        ylim=(0, 8), yticks=np.arange(1, 8))
+
+    plt.show()
 
 def main():
     while True:
